@@ -42,7 +42,7 @@ function App() {
     );
     const DayData = await fetchedDayData.json();
     setWeather(DayData);
-
+    console.log(DayData);
     const fetchedForecastData = await fetch(
       `${weatherApi.base}/onecall?lat=${DayData.coord.lat}&lon=${DayData.coord.lon}&exclude=current,minutely,hourly&units=metric&appid=${weatherApi.dayKey}`
     );
@@ -104,7 +104,16 @@ function App() {
 
     return `${day}, ${date}-${month}-${year}`;
   };
+  const timeBuilder = (time) => {
+    let date = new Date(time * 1000);
+    let hour = date.getHours();
+    let minutes = date.getMinutes();
+    return `${format(hour)}:${format(minutes)}`;
+  };
 
+  const format = (time) => {
+    return time < 10 ? `0${time}` : `${time}`;
+  };
   const getWeatherIcon = (weathertype, date) => {
     let hour = date.getHours();
     if (weathertype === "Clouds") {
@@ -158,13 +167,13 @@ function App() {
                 <h4>Latitude: {weather.coord.lat}</h4>
               </div>
               <div className="day-info">
-                <div className="sunrise">
+                <div className="sun-position">
                   <img src={sunrise} alt="Sunrise Time" />
-                  <h4>time</h4>
+                  <h4>{timeBuilder(weather.sys.sunrise)}</h4>
                 </div>
-                <div className="sunset">
+                <div className="sun-position">
                   <img src={sunset} alt="Sunset time" />
-                  <h4>time</h4>
+                  <h4>{timeBuilder(weather.sys.sunset)}</h4>
                 </div>
               </div>
             </div>
