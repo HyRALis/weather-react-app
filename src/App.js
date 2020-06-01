@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCloudRain,
@@ -25,11 +24,6 @@ function App() {
     dayKey: "eaf2d646b99b5d978a10f99203a2278c",
     base: "https://api.openweathermap.org/data/2.5",
   };
-  const googleApi = {
-    key: "AIzaSyCJFnAZZjwbiOyIdYvXpiGTZJbNsIWt-8U",
-    base:
-      "https://maps.googleapis.com/maps/api/streetview?size=500x500&location=47.5763831,-122.4211769&fov=80&heading=70&pitch=0&key=YOUR_API_KEY",
-  };
 
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
@@ -42,7 +36,7 @@ function App() {
     );
     const DayData = await fetchedDayData.json();
     setWeather(DayData);
-    console.log(DayData);
+
     const fetchedForecastData = await fetch(
       `${weatherApi.base}/onecall?lat=${DayData.coord.lat}&lon=${DayData.coord.lon}&exclude=current,minutely,hourly&units=metric&appid=${weatherApi.dayKey}`
     );
@@ -56,7 +50,6 @@ function App() {
       getDayData();
     }
   };
-
   const imgBcSelector = (weathertype, date) => {
     let hour = date.getHours();
     if (weathertype === "Clouds") {
@@ -71,7 +64,6 @@ function App() {
       return "app sun";
     }
   };
-
   const dateBuilder = (d) => {
     let months = [
       "January",
@@ -110,7 +102,6 @@ function App() {
     let minutes = date.getMinutes();
     return `${format(hour)}:${format(minutes)}`;
   };
-
   const format = (time) => {
     return time < 10 ? `0${time}` : `${time}`;
   };

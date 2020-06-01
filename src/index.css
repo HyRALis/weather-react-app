@@ -159,6 +159,7 @@ main {
 .forecast-container {
   position: absolute;
   display: flex;
+  justify-content: center;
   flex-wrap: nowrap;
   bottom: 0;
   width: 80%;

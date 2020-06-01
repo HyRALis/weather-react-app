@@ -18,15 +18,14 @@ export default function ForecastElement({
       <div className="weather-main">
         <FontAwesomeIcon icon={GetWeatherIcon(weather, new Date())} size="2x" />
         <h6>{weather}</h6>
+        <h6>{Math.round(tempday)} °c</h6>
       </div>
       <div className="element-footer">
         <div className="temp-morning">
-          <h6>Morning:</h6>
-          <h6>{Math.round(tempmorn)}°c</h6>
+          <h6>Morning: {Math.round(tempmorn)} °c</h6>
         </div>
         <div className="temp-evening">
-          <h6>Evening:</h6>
-          <h6>{Math.round(tempnight)}°c</h6>
+          <h6>Evening: {Math.round(tempnight)} °c</h6>
         </div>
       </div>
     </div>
