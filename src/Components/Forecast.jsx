@@ -1,5 +1,6 @@
 import React from "react";
 import ForecastElement from "./ForecastElement";
+import "./Forecast.css";
 
 export default function ForecastBar({ forecast, GetWeatherIcon, DateBuilder }) {
   const HorisontalScrolling = (evt) => {

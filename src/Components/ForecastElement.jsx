@@ -1,5 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./Forecast.css";
 
 export default function ForecastElement({
   tempday,

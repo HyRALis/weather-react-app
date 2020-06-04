@@ -12,8 +12,8 @@ import {
   faTachometerAlt,
   faTemperatureHigh,
   faTemperatureLow,
+  faThermometerHalf,
 } from "@fortawesome/free-solid-svg-icons";
-import { faThermometerHalf } from "@fortawesome/free-solid-svg-icons";
 import SearchForm from "./Components/SearchForm";
 import ForecastBar from "./Components/Forecast";
 import sunrise from "./assets/images/sunrise.svg";
@@ -128,6 +128,7 @@ function App() {
       return faTemperatureLow;
     }
   };
+
   return (
     <div
       className={

@@ -30,6 +30,15 @@
   background-image: url(assets/images/sun-city.jpg);
 }
 
+.landing-wrap {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  align-items: center;
+  margin-bottom: -2%;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -43,7 +52,6 @@ main {
   );
 }
 
-/*Image and weather display CSS*/
 .main-container {
   position: relative;
   display: flex;
@@ -154,21 +162,6 @@ main {
 .preasure h5 {
   margin-left: 10px;
 }
-/*Forcast CsSS*/
-
-.forecast-container {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  bottom: 0;
-  width: 80%;
-  height: 200px;
-  color: #fff;
-  margin: auto;
-  overflow-y: hidden;
-  overflow-x: auto;
-}
 
 ::-webkit-scrollbar {
   height: 10px;
@@ -188,30 +181,4 @@ main {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #ffffff;
-}
-
-.element-container {
-  flex: 0 0 auto;
-  width: 190px;
-  height: 200px;
-  padding-left: 1%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  border-right: 1px solid rgba(255, 255, 255, 0.39);
-}
-.weather-main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.5em;
-}
-.element-footer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 0.9em;
 }
