@@ -9,6 +9,8 @@ import {
   faTemperatureHigh,
   faTemperatureLow,
   faThermometerHalf,
+  faBolt,
+  faSmog,
 } from "@fortawesome/free-solid-svg-icons";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import SearchForm from "./Components/SearchForm";
@@ -55,11 +57,13 @@ function App() {
       return "app rain";
     } else if (weathertype === "Snow") {
       return "app snow";
+    } else if (weathertype === "Thunderstorm") {
+      return "app thunderstorm";
     } else if (weathertype === "Clear" && (hour >= 20 || hour <= 6)) {
       return "app night";
     } else if (weathertype === "Clear" && (hour > 6 || hour < 20)) {
       return "app sun";
-    }
+    } else return "app fog";
   };
   const dateBuilder = (d) => {
     let months = [
@@ -110,11 +114,13 @@ function App() {
       return faCloudRain;
     } else if (weathertype === "Snow") {
       return faSnowflake;
+    } else if (weathertype === "Thunderstorm") {
+      return faBolt;
     } else if (weathertype === "Clear" && (hour >= 20 || hour <= 6)) {
       return faMoon;
     } else if (weathertype === "Clear" && (hour > 6 || hour < 20)) {
       return faSun;
-    }
+    } else return faSmog;
   };
   const temperatureIcon = (temp) => {
     if (temp >= 25) {
@@ -150,7 +156,7 @@ function App() {
                 key={weather.name}
                 appear={true}
                 in={true}
-                timeout={1200}
+                timeout={600}
                 classNames="fade"
               >
                 <WeatherDisplay
@@ -162,7 +168,6 @@ function App() {
                 />
               </CSSTransition>
             </TransitionGroup>
-
             <ForecastBar
               forecast={forecast}
               GetWeatherIcon={getWeatherIcon}

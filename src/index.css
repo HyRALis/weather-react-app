@@ -29,6 +29,12 @@
 .app.sun {
   background-image: url(assets/images/sun-city.jpg);
 }
+.app.thuderstorm {
+  background-image: url(assets/images/thunderstorm.jpg);
+}
+.app.fog {
+  background-image: url(assets/images/mist.jpg);
+}
 
 .landing-wrap {
   display: flex;
@@ -104,6 +110,9 @@ main {
   padding: 5%;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.1);
+}
+.weather-type h4 {
+  margin-top: 10px;
 }
 
 .more-info {
@@ -193,19 +202,19 @@ main {
 }
 .fade-appear-active {
   opacity: 1;
-  transition: opacity 600ms linear;
+  transition: opacity 300ms linear;
 }
 .fade-enter {
   opacity: 0;
 }
 .fade-enter-active {
   opacity: 1;
-  transition: opacity 6000ms linear 600ms;
+  transition: opacity 300ms linear 300ms;
 }
 .fade-exit {
   opacity: 1;
 }
 .fade-exit-active {
   opacity: 0;
-  transition: opacity 600ms linear;
+  transition: opacity 300ms linear;
 }
