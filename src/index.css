@@ -60,7 +60,10 @@ main {
   width: 100%;
   text-shadow: 3px 3px 2px rgb(100, 100, 100);
 }
-
+.weather-display-wrap {
+  display: flex;
+  justify-content: space-evenly;
+}
 .infobar {
   position: absolute;
   top: 0;
@@ -92,13 +95,15 @@ main {
 .weather-type {
   position: absolute;
   top: 0;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: #fff;
   text-align: center;
   font-size: 1.2em;
+  padding: 5%;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .more-info {
@@ -181,4 +186,26 @@ main {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #ffffff;
+}
+
+.fade-appear {
+  opacity: 0;
+}
+.fade-appear-active {
+  opacity: 1;
+  transition: opacity 600ms linear;
+}
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 6000ms linear 600ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 600ms linear;
 }

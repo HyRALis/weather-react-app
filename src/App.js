@@ -1,23 +1,19 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faCloudRain,
   faCloud,
   faSnowflake,
   faSun,
   faMoon,
-  faWind,
-  faCompass,
-  faTint,
-  faTachometerAlt,
   faTemperatureHigh,
   faTemperatureLow,
   faThermometerHalf,
 } from "@fortawesome/free-solid-svg-icons";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import SearchForm from "./Components/SearchForm";
 import ForecastBar from "./Components/Forecast";
-import sunrise from "./assets/images/sunrise.svg";
-import sunset from "./assets/images/sunset.svg";
+import WeatherDisplay from "./Components/WeatherDisplay";
 
 function App() {
   const weatherApi = {
@@ -36,12 +32,13 @@ function App() {
     );
     const DayData = await fetchedDayData.json();
     setWeather(DayData);
-
-    const fetchedForecastData = await fetch(
-      `${weatherApi.base}/onecall?lat=${DayData.coord.lat}&lon=${DayData.coord.lon}&exclude=current,minutely,hourly&units=metric&appid=${weatherApi.dayKey}`
-    );
-    const ForecastData = await fetchedForecastData.json();
-    setForecast(ForecastData.daily);
+    if (typeof DayData.coord != "undefined") {
+      const fetchedForecastData = await fetch(
+        `${weatherApi.base}/onecall?lat=${DayData.coord.lat}&lon=${DayData.coord.lon}&exclude=current,minutely,hourly&units=metric&appid=${weatherApi.dayKey}`
+      );
+      const ForecastData = await fetchedForecastData.json();
+      setForecast(ForecastData.daily);
+    }
     setCity("");
     setCountry("");
   };
@@ -148,75 +145,24 @@ function App() {
         />
         {typeof weather.main != "undefined" ? (
           <div className="main-container">
-            <div className="infobar">
-              <h1>
-                {weather.name}, {weather.sys.country}
-              </h1>
-              <h4>{dateBuilder(new Date())}</h4>
-              <div className="coord-container">
-                <h2>Coordinates:</h2>
-                <h4>Longitude: {weather.coord.lon}</h4>
-                <h4>Latitude: {weather.coord.lat}</h4>
-              </div>
-              <div className="day-info">
-                <div className="sun-position">
-                  <img src={sunrise} alt="Sunrise Time" />
-                  <h4>{timeBuilder(weather.sys.sunrise)}</h4>
-                </div>
-                <div className="sun-position">
-                  <img src={sunset} alt="Sunset time" />
-                  <h4>{timeBuilder(weather.sys.sunset)}</h4>
-                </div>
-              </div>
-            </div>
-            <div className="weather-type">
-              <FontAwesomeIcon
-                icon={getWeatherIcon(weather.weather[0].main, new Date())}
-                size="8x"
-                color="white"
-              />
-              <h4>{weather.weather[0].main}</h4>
-            </div>
-            <div className="more-info">
-              <div className="temperature">
-                <FontAwesomeIcon
-                  icon={temperatureIcon(Math.round(weather.main.temp))}
-                  size="4x"
-                  color="white"
+            <TransitionGroup>
+              <CSSTransition
+                key={weather.name}
+                appear={true}
+                in={true}
+                timeout={1200}
+                classNames="fade"
+              >
+                <WeatherDisplay
+                  TimeBuilder={timeBuilder}
+                  DateBuilder={dateBuilder}
+                  Weather={weather}
+                  GetWeatherIcon={getWeatherIcon}
+                  TemperatureIcon={temperatureIcon}
                 />
-                <div>
-                  <h4>Teamperature: {Math.round(weather.main.temp)}°c</h4>
-                  <h4>RealFeal: {Math.round(weather.main.feels_like)}°c</h4>
-                </div>
-              </div>
-              <div className="wind">
-                <h4>Wind:</h4>
-                <div>
-                  <FontAwesomeIcon icon={faWind} size="2x" color="white" />{" "}
-                  <h5>{weather.wind.speed} m/s</h5>
-                  <FontAwesomeIcon icon={faCompass} size="2x" color="white" />
-                  <h5>{weather.wind.deg}°</h5>
-                </div>
-              </div>
-              <div className="humidity">
-                <h4>Humidity:</h4>
-                <div>
-                  <FontAwesomeIcon icon={faTint} size="2x" color="white" />{" "}
-                  <h5>{weather.main.humidity}%</h5>
-                </div>
-              </div>
-              <div className="preasure">
-                <h4>Air preasure:</h4>
-                <div>
-                  <FontAwesomeIcon
-                    icon={faTachometerAlt}
-                    size="2x"
-                    color="white"
-                  />
-                  <h5>{weather.main.pressure} hPa</h5>
-                </div>
-              </div>
-            </div>
+              </CSSTransition>
+            </TransitionGroup>
+
             <ForecastBar
               forecast={forecast}
               GetWeatherIcon={getWeatherIcon}

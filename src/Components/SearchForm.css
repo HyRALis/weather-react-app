@@ -104,3 +104,12 @@
   cursor: pointer;
   font-weight: bold;
 }
+
+.alert-wrap {
+  display: none;
+  padding: 3%;
+  width: 80%;
+  text-align: left;
+  color: #fff;
+  background-color: rgba(163, 53, 53, 0.7);
+}

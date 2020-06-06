@@ -41,7 +41,10 @@ export default function SearchForm({
       ));
     }
   };
-
+  const alertDisplay = () => {
+    let alert = document.getElementsByClassName("alert-wrap");
+    alert[0].display = "flex";
+  };
   const clickSuggestions = (countryname, countrycode) => {
     const inputbox = document.getElementsByClassName("input-form2");
     inputbox[0].value = countryname;
@@ -72,6 +75,15 @@ export default function SearchForm({
         </button>
       </div>
       <div className="suggestions">{displaySuggestions(suggestArray)}</div>
+      <Alert />
+    </div>
+  );
+}
+
+function Alert() {
+  return (
+    <div className="alert-wrap">
+      <h5>Please ender a valid City and Country</h5>
     </div>
   );
 }
