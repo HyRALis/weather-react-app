@@ -151,7 +151,7 @@ function App() {
         />
         {typeof weather.main != "undefined" ? (
           <div className="main-container">
-            <TransitionGroup>
+            <TransitionGroup component={null}>
               <CSSTransition
                 key={weather.name}
                 appear={true}

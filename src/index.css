@@ -218,3 +218,35 @@ main {
   opacity: 0;
   transition: opacity 300ms linear;
 }
+
+@media (max-width: 800px) {
+  .weather-display-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+  }
+  .infobar {
+    position: initial;
+    margin-bottom: 2em;
+  }
+  .aditional-info {
+    display: none;
+  }
+
+  .weather-type {
+    padding: 0;
+    position: initial;
+    font-size: 1em;
+    background-color: transparent;
+    margin-bottom: 2em;
+  }
+
+  .more-info {
+    position: initial;
+    padding: 0;
+  }
+  .weather-props {
+    display: none;
+  }
+}
